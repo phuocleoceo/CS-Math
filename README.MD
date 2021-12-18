@@ -18,6 +18,7 @@ Cho ma trận
 				
 ## TỐI ƯU
 - Gradient Descent : một biến, nhiều biến, Momentum, NesterovAcceleratedGradient, Stochastic, Mini-Batch
+- Đơn hình, M lớn, đơn hình 2 pha
 					
 ## XÁC SUẤT
 Không code 
