@@ -12,10 +12,10 @@ def SVD(A):
     ATA = A.T.dot(A)
     S, V = eig(ATA)
 
-    t = list(zip(S, V))
+    t = list(zip(S, V.T))
     t.sort(key=lambda x: x[0], reverse=True)
     S = np.array([i[0] for i in t])
-    V = np.array([i[1] for i in t])
+    V = np.array([i[1] for i in t]).T
 
     loop = min(m, n)
     for i in range(loop):
@@ -24,8 +24,8 @@ def SVD(A):
     return U.T, D, V
 
 
-A = np.array([[-1, 3, 5],
-              [7, 8.6, 9]])
+A = np.array([[-1, 35.89, 5],
+              [7, 8.6, 109]])
 
 U, D, V = SVD(A)
 
