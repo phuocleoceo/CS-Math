@@ -24,6 +24,8 @@ def BruteForce(P, n):
                 POINT1.y = P[i].y
                 POINT2.x = P[j].x
                 POINT2.y = P[j].y
+                # POINT1=P[i]
+                # POINT2=P[j]
     return min_val, POINT1, POINT2
 
 
@@ -45,9 +47,6 @@ def StripClosest(strip, size, d):
 
 
 def ClosestUtil(P, Q, n):
-    # global PR1
-    # global PR2
-
     if n <= 3:
         return BruteForce(P, n)
 

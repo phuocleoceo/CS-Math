@@ -1,4 +1,4 @@
-import math
+from math import pow, sqrt
 
 
 # Phân tích n thành tích các số nguyên tố
@@ -25,12 +25,12 @@ def SoUocSo(n):
 def TongUocSo(n):
     result = 1
     for key, value in PhanTich(n).items():
-        result *= (math.pow(key, value+1)-1)/(key-1)
+        result *= (pow(key, value+1)-1)/(key-1)
     return result
 
 
 def TichUocSo(n):
-    return math.pow(n, SoUocSo(n)/2)
+    return pow(n, SoUocSo(n)/2)
 
 
 def Tich(n):

@@ -1,11 +1,11 @@
-import math
+from math import gcd
 
 
 # Nghịch đảo module m của a là a^-1 sao cho  a.a^-1 mod(m) = 1
 # Tức là tìm 1 số i để (a*i-1) chia hết cho m
 # a^-1 chỉ tồn tại khi gcd(a,m)=1 - nguyên tố cùng nhau
 def ModularInverse(a, m):
-    if math.gcd(a, m) != 1:
+    if gcd(a, m) != 1:
         return None
 
     i = 0

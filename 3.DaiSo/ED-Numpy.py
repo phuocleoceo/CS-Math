@@ -4,15 +4,9 @@ from math import pow
 import numpy as np
 
 
-# Copy ma trận
-def Copy_Matrix(M):
-    return np.array([x for x in M])
-
-
 # Ma trận Phorebemit theo phương pháp Danhilepski
-def Phorebemit_Matrix(a):
-    n = len(a)
-    A = Copy_Matrix(a)
+def Phorebemit_Matrix(A):
+    n = len(A)
     M, M1, B = np.zeros((n, n)), np.zeros((n, n)), np.zeros((n, n))
     M_Eigenvector = np.identity(n)
 
@@ -82,4 +76,5 @@ print("Ma trận vector riêng nghịch đảo (V^(-1)) : ")
 V_inv = inv(Eigenvector_Matrix)
 print(V_inv)
 
-# print("Kiểm tra kết quả : ", V.dot(diag_eigen).dot(V_inv))
+print("Kiểm tra kết quả : ")
+print(V.dot(diag_eigen).dot(V_inv))
