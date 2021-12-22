@@ -1,7 +1,7 @@
+from numpy import roots, diag
+from numpy.linalg import inv
 from math import pow
 import numpy as np
-from numpy.linalg import inv
-from numpy import roots, diag
 
 
 # Copy ma trận
@@ -14,7 +14,7 @@ def Phorebemit_Matrix(a):
     n = len(a)
     A = Copy_Matrix(a)
     M, M1, B = np.zeros((n, n)), np.zeros((n, n)), np.zeros((n, n))
-    M_Eigenvector = np.ones((n))
+    M_Eigenvector = np.identity(n)
 
     for k in range(n-1, 0, -1):
         for i in range(0, n):
@@ -46,14 +46,14 @@ def Eigenvalue_Matrix(A):
 
 
 # Ma trận vecto riêng
-def Eigenvector(M, Eigenvalue_Mat):
-    n = len(Eigenvalue_Mat)
+def Eigenvector(M, Eigenvalue):
+    n = len(Eigenvalue)
     A, RESULT_VECTOR = np.zeros((n, n)), np.zeros((n, n))
 
     for i in range(0, n):
         for j in range(0, n):
-            A[i][j] = pow(Eigenvalue_Mat[i], n-j-1)
-        RESULT_VECTOR[i] = M.dot(A[i].T)
+            A[i][j] = pow(Eigenvalue[i], n-j-1)
+        RESULT_VECTOR[i] = M.dot(A[i])
 
     return RESULT_VECTOR.T
 

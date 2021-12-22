@@ -7,7 +7,7 @@ def SortEigenValAndVector(S, V):
     temp = list(zip(S, V))
     S.sort(reverse=True)
     temp.sort(key=lambda x: x[0], reverse=True)
-    return np.array([i[1] for i in temp]).T
+    return S, np.array([i[1] for i in temp]).T
 
 
 def SVD(A):
@@ -17,7 +17,7 @@ def SVD(A):
     V = np.zeros((n, n), dtype=float)
     S, V = np.linalg.eig(np.dot(A.T, A))
 
-    V = SortEigenValAndVector(S, V.T)
+    S, V = SortEigenValAndVector(S, V.T)
 
     if m > n:
         for i in range(0, n):
