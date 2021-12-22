@@ -1,5 +1,8 @@
+# Thuật toán Danhilepski được em tham khảo từ giáo trình PHƯƠNG PHÁP TÍNH trang 37/80
+# được biên soạn bới cô ĐỖ THỊ TUYẾT HOA (2007 - Lưu hành nội bộ)
 from math import pow
 from numpy import roots
+import numpy
 
 
 # Hàm in ma trận đẹp hơn
@@ -224,4 +227,4 @@ Print_Matrix("Ma trận giá trị riêng (diag(lamda)) : ", diag_eigen)
 V_inv = Inverse_Matrix(Eigenvector_Matrix)
 Print_Matrix("Ma trận vector riêng nghịch đảo (V^(-1)) : ", V_inv)
 
-# print("Kiểm tra kết quả : ", V.dot(diag_eigen).dot(V_inv))
+print("Kiểm tra kết quả : \n", numpy.array(V).dot(diag_eigen).dot(V_inv))
