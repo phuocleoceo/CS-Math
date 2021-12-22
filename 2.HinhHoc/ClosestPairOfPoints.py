@@ -109,8 +109,8 @@ print("A : (", PR1.x, ",", PR1.y, ")")
 print("B : (", PR2.x, ",", PR2.y, ")")
 
 ############################################################
-print(">> Test : ")
-minDis, p1, p2 = BruteForce(input, len(input))
-print(minDis)
-print(p1.x, p1.y)
-print(p2.x, p2.y)
+# print(">> Test : ")
+# minDis, p1, p2 = BruteForce(input, len(input))
+# print(minDis)
+# print(p1.x, p1.y)
+# print(p2.x, p2.y)
