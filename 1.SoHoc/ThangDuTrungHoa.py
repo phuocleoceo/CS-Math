@@ -44,7 +44,9 @@ def Optimize(x, M):
 
 # print(ModularInverse(8, 6))
 
-a = [2, 3, 5]
-m = [3, 5, 7]
+# a = [2, 3, 5]
+# m = [3, 5, 7]
+a = [2, 3, 10]
+m = [5, 7, 11]
 x, M = ChineseTheorem(a, m)
 print(str(x)+"(mod"+str(M)+")")

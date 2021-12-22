@@ -104,9 +104,6 @@ def SimplexMethod(c, b, a):
             delta[j] = np.sum([Coeff[i]*a[i][j] for i in range(m)]) - c[j]
         DrawSimplexTable(a.tolist(), b, BasicVar, Coeff, Fmin, delta)
 
-    # print(BasicVar)
-    # print(Coeff)
-    # print(b)
     x = [0]*n
     for i in range(m):
         x[BasicVar[i]] = b[i]

@@ -1,4 +1,4 @@
-from math import pow, sqrt
+from math import pow
 
 
 # Phân tích n thành tích các số nguyên tố

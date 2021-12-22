@@ -32,8 +32,8 @@ def SVD(A):
     return U.T, D, V
 
 
-A = np.array([[1, 3, 5],
-              [7, 8, 9]])
+A = np.array([[1.69, 3.7, 5],
+              [7, 8.4, 9]])
 
 U, D, V = SVD(A)
 
