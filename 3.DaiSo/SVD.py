@@ -1,39 +1,31 @@
-import math
+from numpy.linalg import eig
+from math import sqrt
 import numpy as np
-
-
-def SortEigenValAndVector(S, V):
-    S = S.tolist()
-    temp = list(zip(S, V))
-    S.sort(reverse=True)
-    temp.sort(key=lambda x: x[0], reverse=True)
-    return S, np.array([i[1] for i in temp]).T
 
 
 def SVD(A):
     m, n = np.shape(A)
-    U = np.zeros((m, m), dtype=float)
-    D = np.zeros((m, n), dtype=float)
-    V = np.zeros((n, n), dtype=float)
-    S, V = np.linalg.eig(np.dot(A.T, A))
+    U = np.zeros((m, m))
+    D = np.zeros((m, n))
+    V = np.zeros((n, n))
 
-    S, V = SortEigenValAndVector(S, V.T)
+    ATA = A.T.dot(A)
+    S, V = eig(ATA)
 
-    if m > n:
-        for i in range(0, n):
-            D[i][i] = math.sqrt(S[i])
-        for i in range(0, n):
-            U[i] = np.dot(A, V.T[i]) / D[i][i]
-    else:
-        for i in range(0, m):
-            D[i][i] = math.sqrt(S[i])
-        for i in range(0, m):
-            U[i] = np.dot(A, V.T[i]) / D[i][i]
+    t = list(zip(S, V))
+    t.sort(key=lambda x: x[0], reverse=True)
+    S = np.array([i[0] for i in t])
+    V = np.array([i[1] for i in t])
+
+    loop = min(m, n)
+    for i in range(loop):
+        D[i][i] = sqrt(S[i])
+        U[i] = A.dot(V.T[i]) / D[i][i]
     return U.T, D, V
 
 
-A = np.array([[1.69, 3.7, 5],
-              [7, 8.4, 9]])
+A = np.array([[-1, 3, 5],
+              [7, 8.6, 9]])
 
 U, D, V = SVD(A)
 
