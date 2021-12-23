@@ -21,11 +21,12 @@ X = np.array([1, 0])
 X = X.T
 
 # Ma trận xác suất chuyển vị
-P = np.array([[0.35, 0.65],
-              [0.75, 0.25]])
+P = np.array([[0.22, 0.78],
+              [0.72, 0.28]])
 
 # Xn = P^n * X
 
 # Sau n giai đoạn
 n = 2
+print(matrix_power(P, n))
 print(matrix_power(P, n).dot(X))

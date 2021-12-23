@@ -1,19 +1,16 @@
 from math import gcd
 
 
-# Nghịch đảo module m của a là a^-1 sao cho  a.a^-1 mod(m) = 1
-# Tức là tìm 1 số i để (a*i-1) chia hết cho m
-# a^-1 chỉ tồn tại khi gcd(a,m)=1 - nguyên tố cùng nhau
 def ModularInverse(a, m):
-    if gcd(a, m) != 1:
+    if gcd(a, m) == 1:
+        i = 0
+        while True:
+            if (a*i-1) % m == 0:
+                return i
+            else:
+                i = i+1
+    else:
         return None
-
-    i = 0
-    while True:
-        if (a*i-1) % m == 0:
-            return i
-        else:
-            i = i+1
 
 
 def ChineseTheorem(a, m):
@@ -21,15 +18,13 @@ def ChineseTheorem(a, m):
     M = 1
     for x in m:
         M = M*x
-
-    Mi = [0]*n
+    mi = [0]*n
     y = [0]*n
     x = 0
     for i in range(0, n):
-        Mi[i] = int(M/m[i])
-        y[i] = ModularInverse(Mi[i], m[i])
-        x = x+a[i]*Mi[i]*y[i]
-
+        mi[i] = M//m[i]
+        y[i] = ModularInverse(mi[i], m[i])
+        x = x+a[i]*mi[i]*y[i]
     return Optimize(x, M)
 
 
@@ -42,11 +37,7 @@ def Optimize(x, M):
     return x-(i-1)*M, M
 
 
-# print(ModularInverse(8, 6))
-
-# a = [2, 3, 5]
-# m = [3, 5, 7]
-a = [2, 3, 10]
-m = [5, 7, 11]
+a = [2, 3, 4]
+m = [3, 5, 11]
 x, M = ChineseTheorem(a, m)
 print(str(x)+"(mod"+str(M)+")")
