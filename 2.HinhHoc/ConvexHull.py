@@ -1,39 +1,45 @@
 import numpy as np
 
 
-def RightTurn(p, q, r):
-    d1 = (r[1]-p[1])*(q[0]-p[0])
-    d2 = (q[1]-p[1])*(r[0]-p[0])
-    return d1 < d2
+class Point():
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
+
+
+def NotRightTurn(p, q, r):
+    return (q.x*r.y+p.x*q.y+p.y*r.x)-(q.x*p.y+q.y*r.x+p.x*r.y) >= 0
 
 
 def ConvexHull(P):
-    sorted(P, key=lambda x: x[0])
-    L_upper = [P[0], P[1]]
-    for i in range(2, len(P)):
-        L_upper.append(P[i])
-        while len(L_upper) > 2 and not RightTurn(L_upper[-1], L_upper[-2], L_upper[-3]):
-            del L_upper[-2]
-    L_lower = [P[-1], P[-2]]
-    for i in range(len(P)-3, -1, -1):
-        L_lower.append(P[i])
-        while len(L_lower) > 2 and not RightTurn(L_lower[-1], L_lower[-2], L_lower[-3]):
-            del L_lower[-2]
-    del L_lower[0]
-    del L_lower[-1]
-    L = L_upper + L_lower
-    return np.array(L[::-1])
+    sorted(P, key=lambda p: p.x)
+    L = len(P)
+
+    Lupper = [P[0], P[1]]
+    for i in range(2, L):
+        Lupper.append(P[i])
+        while len(Lupper) > 2 and NotRightTurn(Lupper[-1], Lupper[-2], Lupper[-3]):
+            del Lupper[-2]
+
+    Llower = [P[-1], P[-2]]
+    for i in range(L-3, -1, -1):
+        Llower.append(P[i])
+        while len(Llower) > 2 and NotRightTurn(Llower[-1], Llower[-2], Llower[-3]):
+            del Llower[-2]
+
+    L = Lupper + Llower[1:-1]
+    return L[:-1]
 
 
-if __name__ == '__main__':
-    P = np.array([(3, 4),
-                  (5, 3),
-                  (6, 5),
-                  (7, 6),
-                  (8, 7),
-                  (4, 9),
-                  (3, 8),
-                  (4, 8),
-                  (7, 10),
-                  (7, 4)])
-    print(ConvexHull(P))
+P = [Point(3, 4),
+     Point(5, 3),
+     Point(6, 5),
+     Point(7, 6),
+     Point(8, 7),
+     Point(4, 9),
+     Point(3, 8),
+     Point(4, 8),
+     Point(7, 10),
+     Point(7, 4)]
+for p in ConvexHull(P):
+    print("(", p.x, ",", p.y, ")")
